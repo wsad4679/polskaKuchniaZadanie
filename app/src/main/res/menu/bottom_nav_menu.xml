@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/startFragment"
+        android:title="start"
+        />
+
+    <item
+        android:id="@+id/menuChoiceFragment"
+        android:title="zamów"
+        />
+
+    <item
+        android:id="@+id/summaryFragment"
+        android:title="podsumowanie zamówienia"
+        />
+
+</menu>
