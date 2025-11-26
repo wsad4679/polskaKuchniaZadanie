@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.CustomMealFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/addToOrderButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="custom meal" />
+        android:layout_height="wrap_content"
+        android:text="Dodaj do zamówienia"
+        />
 
 </LinearLayout>

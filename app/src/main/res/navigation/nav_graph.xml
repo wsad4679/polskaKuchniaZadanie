@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_summaryFragment_to_menuChoiceFragment"
             app:destination="@id/menuChoiceFragment" />
+        <action
+            android:id="@+id/action_summaryFragment_to_startFragment"
+            app:destination="@id/startFragment" />
     </fragment>
     <fragment
         android:id="@+id/totalBarFragment"
