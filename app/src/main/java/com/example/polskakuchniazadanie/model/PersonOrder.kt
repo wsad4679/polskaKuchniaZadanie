@@ -1,5 +1,5 @@
 package com.example.polskakuchniazadanie.model
 
 data class PersonOrder(
-    val name: String
+    val order: List<Order>
 )
