@@ -8,11 +8,12 @@
     android:padding="16dp">
 
     <RadioGroup
-        android:id="@+id/mealRadioGroup"
+        android:id="@+id/readyMealRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- 1. ZESTAWY ZUP -->
         <RadioButton
             android:id="@+id/zupaPomidorowaRadioButton"
             android:layout_width="wrap_content"
@@ -25,23 +26,24 @@
             android:layout_height="wrap_content"
             android:text="Rosół" />
 
+        <!-- 2. ZESTAWY OBIADOWE -->
         <RadioButton
-            android:id="@+id/schabowyRadioButton"
+            android:id="@+id/schabowyZestawRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Schabowy" />
+            android:text="Schabowy + ziemniaki + buraki + woda" />
 
         <RadioButton
-            android:id="@+id/pierogiRuskieRadioButton"
+            android:id="@+id/pierogiZestawRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pierogi ruskie" />
+            android:text="Pierogi ruskie + kompot" />
 
         <RadioButton
-            android:id="@+id/plackiZiemniaczaneRadioButton"
+            android:id="@+id/plackiZestawRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Placki ziemniaczane" />
+            android:text="Placki ziemniaczane + surówka + sok" />
 
     </RadioGroup>
 

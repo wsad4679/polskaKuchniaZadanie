@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.polskakuchniazadanie.R
 import com.example.polskakuchniazadanie.databinding.FragmentReadyMealBinding
+import com.example.polskakuchniazadanie.model.MealItem
+import com.example.polskakuchniazadanie.viewmodel.OrderViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +28,9 @@ class ReadyMealFragment : Fragment() {
     private var _binding : FragmentReadyMealBinding?= null
 
     private val binding get() = _binding!!
-    //zdefiniować sharedViewModel
+
+
+    private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -53,7 +58,41 @@ class ReadyMealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         binding.addToOrderButton.setOnClickListener {
+
+            when (binding.readyMealRadioGroup.checkedRadioButtonId) {
+
+                R.id.zupaPomidorowaRadioButton -> {
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Zupa pomidorowa", 12.0))
+                }
+
+                R.id.rosolRadioButton -> {
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Rosół", 12.0))
+                }
+
+                R.id.schabowyZestawRadioButton -> {
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Schabowy", 22.0))
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Ziemniaki", 6.0))
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Buraki", 5.0))
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Woda", 4.0))
+                }
+
+                R.id.pierogiZestawRadioButton -> {
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Pierogi ruskie", 18.0))
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Kompot", 4.0))
+                }
+
+                R.id.plackiZestawRadioButton -> {
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Placki ziemniaczane", 16.0))
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Surówka", 4.0))
+                    sharedViewModel.addMealToCurrentOrder(MealItem("Sok", 5.0))
+                }
+            }
+
+
+
             findNavController().navigate(
                 ReadyMealFragmentDirections.actionReadyMealFragmentToMenuChoiceFragment()
             )
