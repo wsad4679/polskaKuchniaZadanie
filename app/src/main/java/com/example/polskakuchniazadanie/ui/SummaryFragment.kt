@@ -62,6 +62,48 @@ class SummaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel.allOrders.observe(viewLifecycleOwner) { allOrders ->
+
+            val currentOrder = sharedViewModel.currentPersonOrder.value
+
+            // jeśli nie ma żadnych zamówień wywietl Brak zamówenia
+            if ((allOrders.personOrders.isEmpty()) && (currentOrder?.items?.isEmpty() != false)) {
+                binding.orderSummaryTextView.text = "Brak zamówienia"
+            }
+
+            val summaryText = buildString {
+                var counter = 1
+
+                // wszystkie zamówenia z listy allOrders
+                allOrders.personOrders.forEach { order ->
+                    append("Zamówienie osoby:\n")
+                    order.items.forEach { item ->
+                        append("${counter}. ${item.name} - ${item.price} zł\n")
+                        counter++
+                    }
+                    append("\n")
+                }
+
+                // Dodajemy obecne zamównie ponieważ ono dodaje się do listy wszystkich zamówień po dodaniu nowej osoby
+                currentOrder?.let { order ->
+                    if (order.items.isNotEmpty()) {
+                        append("Bieżące zamówienie:\n")
+                        order.items.forEach { item ->
+                            append("${counter}. ${item.name} - ${item.price} zł\n")
+                            counter++
+                        }
+                        append("\n")
+                    }
+                }
+
+                // całkowita suma
+                val total = allOrders.getTotal() + (currentOrder?.getTotal() ?: 0.0)
+                append("Suma wszystkich zamówień: $total zł")
+            }
+
+            binding.orderSummaryTextView.text = summaryText
+        }
+
         binding.addToOrderButton.setOnClickListener {
             findNavController().navigate(
                 SummaryFragmentDirections.actionSummaryFragmentToMenuChoiceFragment()
