@@ -15,10 +15,11 @@
         android:layout_height="wrap_content"
         >
 
-        <TextView
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/totalBarFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Podsumowanie: \n"
+            android:layout_height="wrap_content"
+            android:name="com.example.polskakuchniazadanie.ui.TotalBarFragment"
             />
 
 

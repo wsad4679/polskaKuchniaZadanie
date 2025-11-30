@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.polskakuchniazadanie.R
 import com.example.polskakuchniazadanie.databinding.FragmentTotalBarBinding
+import com.example.polskakuchniazadanie.viewmodel.OrderViewModel
+import kotlin.getValue
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +29,8 @@ class TotalBarFragment : Fragment() {
     private var _binding : FragmentTotalBarBinding?= null
 
     private val binding get() = _binding!!
-    //zdefiniować sharedViewModel
+
+    private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -50,6 +54,19 @@ class TotalBarFragment : Fragment() {
     ): View? {
         _binding = FragmentTotalBarBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sharedViewModel.currentOrderTotal.observe(viewLifecycleOwner) { currentTotal ->
+            sharedViewModel.allOrdersTotal.observe(viewLifecycleOwner) { allTotal ->
+                binding.totalCostTextView.text =
+                    "Bieżące zamówienie: ${currentTotal} zł\n" +
+                            "Wszystkie zamówienia razem: ${allTotal} zł"
+            }
+        }
+
     }
 
     companion object {

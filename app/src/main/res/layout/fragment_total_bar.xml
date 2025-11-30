@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.TotalBarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/totalCostTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="total bar" />
+        android:text="Obecne zamównie:\nCałkowite zamówienie: " />
 
 </LinearLayout>
