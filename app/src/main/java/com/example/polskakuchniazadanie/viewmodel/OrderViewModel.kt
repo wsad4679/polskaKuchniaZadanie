@@ -1,5 +1,6 @@
 package com.example.polskakuchniazadanie.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,7 +31,10 @@ class OrderViewModel: ViewModel() {
     }
 
     private fun updateAllOrdersTotal() {
-        _allOrdersTotal.value = allOrders.value?.getTotal()
+         val total = (allOrders.value?.getTotal() ?: 0.0) + (currentPersonOrder.value?.getTotal() ?: 0.0)
+         _allOrdersTotal.value = total
+        Log.i("test", total.toString())
+
     }
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -40,6 +44,7 @@ class OrderViewModel: ViewModel() {
         order.addItem(item)
         _currentPersonOrder.value = order // aktualizacja LiveData
         updateCurrentTotal()
+        updateAllOrdersTotal()
     }
 
     fun confirmCurrentOrder() {
@@ -48,7 +53,6 @@ class OrderViewModel: ViewModel() {
 
         orderList.addOrder(currentOrder)
         _allOrders.value = orderList // aktualizacja LiveData
-        updateAllOrdersTotal()
 
         // reset bieżącego zamówienia
         _currentPersonOrder.value = PersonOrder()
