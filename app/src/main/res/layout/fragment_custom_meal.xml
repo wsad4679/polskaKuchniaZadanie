@@ -1,15 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CustomMealFragment">
+    tools:context=".ui.CustomMealFragment"
+    android:paddingBottom="100dp"
+    android:clipToPadding="false"
+    >
 
-    <Button
-        android:id="@+id/addToOrderButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dodaj do zamówienia"
-        />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wybierz zupę"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/soupRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/zupaPomidorowaRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zupa pomidorowa" />
+
+            <RadioButton
+                android:id="@+id/rosolRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rosół" />
+
+            <RadioButton
+                android:id="@+id/brakZupyRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zupa owocowa" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wybierz danie główne"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/mainDishRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/schabowyRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schabowy" />
+
+            <RadioButton
+                android:id="@+id/pierogiRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pierogi ruskie" />
+
+            <RadioButton
+                android:id="@+id/plackiRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placki ziemniaczane" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dodatki (można wybrać kilka)"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="8dp"/>
+
+        <CheckBox
+            android:id="@+id/frytkiCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frytki" />
+
+        <CheckBox
+            android:id="@+id/ziemniakiCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ziemniaki" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Surówki (można wybrać kilka)"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="8dp"/>
+
+        <CheckBox
+            android:id="@+id/marchewkaCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marchewka" />
+
+        <CheckBox
+            android:id="@+id/kapustaCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kapusta" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wybierz napój"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingTop="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/drinkRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/wodaRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Woda" />
+
+            <RadioButton
+                android:id="@+id/sokPomaranczowyRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sok pomarańczowy" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/addToOrderButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj do zamówienia"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.polskakuchniazadanie.R
 import com.example.polskakuchniazadanie.databinding.FragmentCustomMealBinding
+import com.example.polskakuchniazadanie.model.MealItem
+import com.example.polskakuchniazadanie.viewmodel.OrderViewModel
+import kotlin.getValue
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +29,9 @@ class CustomMealFragment : Fragment() {
     private var _binding : FragmentCustomMealBinding?= null
 
     private val binding get() = _binding!!
-    //zdefiniować sharedViewModel
+
+
+    private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -54,7 +60,37 @@ class CustomMealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+
         binding.addToOrderButton.setOnClickListener {
+            when (binding.soupRadioGroup.checkedRadioButtonId) {
+                R.id.zupaPomidorowaRadioButton -> sharedViewModel.addMealToCurrentOrder(MealItem("Zupa pomidorowa", 12.0))
+                R.id.rosolRadioButton -> sharedViewModel.addMealToCurrentOrder(MealItem("Rosół", 12.0))
+
+            }
+
+            when (binding.mainDishRadioGroup.checkedRadioButtonId) {
+                R.id.schabowyRadioButton -> sharedViewModel.addMealToCurrentOrder(MealItem("Schabowy", 22.0))
+                R.id.pierogiRadioButton -> sharedViewModel.addMealToCurrentOrder(MealItem("Pierogi ruskie", 18.0))
+                R.id.plackiRadioButton -> sharedViewModel.addMealToCurrentOrder(MealItem("Placki ziemniaczane", 16.0))
+            }
+
+            if (binding.frytkiCheckBox.isChecked) sharedViewModel.addMealToCurrentOrder(MealItem("Frytki", 6.0))
+            if (binding.ziemniakiCheckBox.isChecked) sharedViewModel.addMealToCurrentOrder(MealItem("Ziemniaki", 6.0))
+
+            if (binding.marchewkaCheckBox.isChecked) sharedViewModel.addMealToCurrentOrder(MealItem("Marchewka", 4.0))
+            if (binding.kapustaCheckBox.isChecked) sharedViewModel.addMealToCurrentOrder(MealItem("Kapusta", 4.0))
+
+            when (binding.drinkRadioGroup.checkedRadioButtonId) {
+                R.id.wodaRadioButton -> sharedViewModel.addMealToCurrentOrder(MealItem("Woda", 4.0))
+                R.id.sokPomaranczowyRadioButton -> sharedViewModel.addMealToCurrentOrder(MealItem("Sok pomarańczowy", 5.0))
+            }
+
+
+
+
+
             findNavController().navigate(
                 CustomMealFragmentDirections.actionCustomMealFragmentToMenuChoiceFragment()
             )
