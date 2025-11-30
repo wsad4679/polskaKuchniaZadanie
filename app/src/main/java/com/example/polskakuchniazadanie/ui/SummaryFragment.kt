@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.polskakuchniazadanie.R
 import com.example.polskakuchniazadanie.databinding.FragmentSummaryBinding
+import com.example.polskakuchniazadanie.viewmodel.OrderViewModel
+import kotlin.getValue
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +27,8 @@ class SummaryFragment : Fragment() {
     private var _binding : FragmentSummaryBinding?= null
 
     private val binding get() = _binding!!
-    //zdefiniować sharedViewModel
+
+    private val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -65,13 +69,14 @@ class SummaryFragment : Fragment() {
         }
 
         binding.addNewPersonButton.setOnClickListener {
-            //kod który pozwoli dodać nową osobę oraz ustawi zamówienia na nią
+            sharedViewModel.confirmCurrentOrder()
             findNavController().navigate(
                 SummaryFragmentDirections.actionSummaryFragmentToMenuChoiceFragment()
             )
         }
 
         binding.endOrderButton.setOnClickListener {
+            sharedViewModel.clearAllOrders()
             findNavController().navigate(
                 SummaryFragmentDirections.actionSummaryFragmentToStartFragment()
             )
