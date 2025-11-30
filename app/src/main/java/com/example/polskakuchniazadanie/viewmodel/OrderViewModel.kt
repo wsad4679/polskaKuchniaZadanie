@@ -10,9 +10,11 @@ import com.example.polskakuchniazadanie.model.PersonOrder
 class OrderViewModel: ViewModel() {
 
 
-    private var currentPersonOrder = PersonOrder()
+    private val _currentPersonOrder = MutableLiveData<PersonOrder>(PersonOrder())
+    val currentPersonOrder: LiveData<PersonOrder> get() = _currentPersonOrder
 
-    private val allOrders = Order()
+    private val _allOrders = MutableLiveData<Order>(Order())
+    val allOrders: LiveData<Order> get() = _allOrders
     
     
     //-----------------------------------|TOTALBAR LIVE DATA|--------------------------------------------------------------------------------------------
@@ -24,41 +26,43 @@ class OrderViewModel: ViewModel() {
 
 
     private fun updateCurrentTotal() {
-        _currentOrderTotal.value = currentPersonOrder.getTotal()
+        _currentOrderTotal.value = currentPersonOrder.value?.getTotal()
     }
 
     private fun updateAllOrdersTotal() {
-        _allOrdersTotal.value = allOrders.getTotal()
+        _allOrdersTotal.value = allOrders.value?.getTotal()
     }
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     fun addMealToCurrentOrder(item: MealItem) {
-        currentPersonOrder.addItem(item)
+        val order = _currentPersonOrder.value ?: PersonOrder()
+        order.addItem(item)
+        _currentPersonOrder.value = order // aktualizacja LiveData
         updateCurrentTotal()
-        
     }
 
     fun confirmCurrentOrder() {
-        allOrders.addOrder(currentPersonOrder)
+        val orderList = _allOrders.value ?: Order()
+        val currentOrder = _currentPersonOrder.value ?: PersonOrder()
+
+        orderList.addOrder(currentOrder)
+        _allOrders.value = orderList // aktualizacja LiveData
         updateAllOrdersTotal()
 
-        // zaczynamy następne zamówienie od zera
-        currentPersonOrder = PersonOrder()
+        // reset bieżącego zamówienia
+        _currentPersonOrder.value = PersonOrder()
         updateCurrentTotal()
-
-        
     }
 
     fun clearAllOrders() {
-        allOrders.personOrders.clear()
-        currentPersonOrder = PersonOrder()
-
+        _allOrders.value = Order()
+        _currentPersonOrder.value = PersonOrder()
         updateCurrentTotal()
         updateAllOrdersTotal()
-
     }
 
-
-
 }
+
+
+
