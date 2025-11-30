@@ -4,16 +4,19 @@
     <item
         android:id="@+id/startFragment"
         android:title="start"
+        android:icon="@drawable/ic_home"
         />
 
     <item
         android:id="@+id/menuChoiceFragment"
         android:title="zamów"
+        android:icon="@drawable/ic_search"
         />
 
     <item
         android:id="@+id/summaryFragment"
         android:title="podsumowanie zamówienia"
+        android:icon="@drawable/ic_check"
         />
 
 </menu>
