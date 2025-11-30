@@ -3,14 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ReadyMealFragment">
+    tools:context=".ui.ReadyMealFragment"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <RadioGroup
+        android:id="@+id/mealRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/zupaPomidorowaRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zupa pomidorowa" />
+
+        <RadioButton
+            android:id="@+id/rosolRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rosół" />
+
+        <RadioButton
+            android:id="@+id/schabowyRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schabowy" />
+
+        <RadioButton
+            android:id="@+id/pierogiRuskieRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pierogi ruskie" />
+
+        <RadioButton
+            android:id="@+id/plackiZiemniaczaneRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Placki ziemniaczane" />
+
+    </RadioGroup>
+
     <Button
         android:id="@+id/addToOrderButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dodaj do zamówienia"
-        />
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>
